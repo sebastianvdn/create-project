@@ -51,7 +51,7 @@ class Project(tk.Tk):
             "Button.TButton",
             background=[("active", COLOUR_PRIMARY), ("disabled", COLOUR_LIGHT_TEXT)]
         )
-
+    
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
         self.title("Create a new Project")
@@ -67,6 +67,7 @@ class Project(tk.Tk):
         self.folder_path = tk.StringVar()
         self.create_venv = tk.BooleanVar()
         self.project_name = tk.StringVar()
+        self.progress_int_var = tk.IntVar(value=0)
 
         container = ttk.Frame(self)
         container.grid()
