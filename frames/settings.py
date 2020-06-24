@@ -75,7 +75,7 @@ class Settings(ttk.Frame):
         button_container.grid(sticky="EW", padx=10)
         button_container.columnconfigure(0, weight=1)
 
-        timer_button = ttk.Button(
+        back_button = ttk.Button(
             button_container,
             text="← Back",
             command=show_timer,
@@ -83,4 +83,4 @@ class Settings(ttk.Frame):
             cursor="hand2"  # hand1 in some systems
         )
 
-        timer_button.grid(column=0, row=0, sticky="EW", padx=2)
+        back_button.grid(column=0, row=0, sticky="EW", padx=2)

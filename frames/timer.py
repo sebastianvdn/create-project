@@ -1,8 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
-from collections import deque
-import winsound
-import os
+from tkinter import ttk
 
 
 class Timer(ttk.Frame):
@@ -47,97 +44,16 @@ class Timer(ttk.Frame):
         )
         timer_counter.place(relx=0.5, rely=0.5, anchor="center")
 
-        button_container = ttk.Frame(self, padding=10, style="Background.TFrame")
-        button_container.grid(row=2, column=0, columnspan=2, sticky="EW")
-        button_container.columnconfigure((0, 1, 2), weight=1)
-
-        self.start_button = ttk.Button(
-            button_container,
-            text="Start",
-            command=self.start_timer,
-            style="PomodoroButton.TButton",
-            cursor="hand2"
-        )
-
-        self.start_button.grid(row=0, column=0, sticky="EW")
-
-        self.stop_button = ttk.Button(
-            button_container,
-            text="Stop",
-            state="disabled",
-            command=self.stop_timer,
-            style="PomodoroButton.TButton",
-            cursor="hand2"
-        )
-
-        self.stop_button.grid(row=0, column=1, sticky="EW", padx=5)
-
-        reset_button = ttk.Button(
-            button_container,
-            text="Reset",
-            command=self.reset_timer,
-            style="PomodoroButton.TButton",
-            cursor="hand2"
-        )
-
-        reset_button.grid(row=0, column=2, sticky="EW")
-    
-    def start_timer(self):
-        self.timer_running = True
-        self.start_button["state"] = "disabled"
-        self.stop_button["state"] = "enabled"
-        self.decrement_time()
-
-    def stop_timer(self):
-        self.timer_running = False
-        self.start_button["state"] = "enabled"
-        self.stop_button["state"] = "disabled"
+        button_container = ttk.Frame(self, style="Background.TFrame")
+        button_container.grid(sticky="EW", padx=10, pady=10, columnspan=2)
+        button_container.columnconfigure(0, weight=1)
         
-        if self._timer_decrement_job:
-            self.after_cancel(self._timer_decrement_job)
-            self._timer_decrement_job = None
+        create_project = ttk.Button(
+            button_container,
+            text="Create Project",
+            style="PomodoroButton.TButton",
+            cursor="hand2"  # hand1 in some systems
+        )
+
+        create_project.grid(column=0, row=0, sticky="EW", padx=2)
     
-    def reset_timer(self):
-        self.stop_timer()
-        pomodoro_time = self.controller.github_api_token.get()
-        try:
-            self.current_time.set(f"{int(pomodoro_time):02d}:00")
-            self.controller.timer_schedule = deque(self.controller.timer_order)
-            self.current_timer_label.set(self.controller.timer_schedule[0])
-        except ValueError:
-            messagebox.showerror(title='Invalid Input', message='Invalid Input')
-
-    def decrement_time(self):
-        current_time = self.current_time.get()
-
-        if self.timer_running and current_time != "00:00":            
-            minutes, seconds = current_time.split(":")
-
-            if int(seconds) > 0:
-                seconds = int(seconds) - 1
-                minutes = int(minutes)
-            else:
-                seconds = 59
-                minutes = int(minutes) - 1
-
-            self.current_time.set(f"{minutes:02d}:{seconds:02d}")
-            self._timer_decrement_job = self.after(1000, self.decrement_time)
-        elif self.timer_running and current_time == "00:00":
-            self.controller.timer_schedule.rotate(-1)
-            next_up = self.controller.timer_schedule[0]
-            self.current_timer_label.set(next_up)
-            filename = "pomodoro_app\\frames\\Rooster.wav"
-            winsound.PlaySound(filename, winsound.SND_FILENAME)
-
-
-            if next_up == "Pomodoro":
-                pomodoro_time = int(self.controller.github_api_token.get())
-                self.current_time.set(f"{pomodoro_time:02d}:00")
-            elif next_up == "Short Break":
-                short_break_time = int(self.controller.default_project_location.get())
-                self.current_time.set(f"{short_break_time:02d}:00")
-            elif next_up == "Long Break":
-                default_venv_name_time = int(self.controller.default_venv_name.get())
-                self.current_time.set(f"{default_venv_name_time:02d}:00")
-            
-            self._timer_decrement_job = self.after(1000, self.decrement_time)
