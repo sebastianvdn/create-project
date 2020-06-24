@@ -55,7 +55,7 @@ class PomodoroTimer(tk.Tk):
 
         self.github_api_token = tk.StringVar(value="xxx")
         self.default_venv_name = tk.StringVar(value="venv")
-        self.default_project_location = tk.StringVar(value=5)
+        self.default_project_location = tk.StringVar(value="C:\\Projects\\")
         self.timer_order = ["Pomodoro", "Short Break", "Pomodoro", "Short Break", "Pomodoro", "Long Break"]
         self.timer_schedule = deque(self.timer_order)
 

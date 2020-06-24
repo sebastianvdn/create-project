@@ -55,7 +55,7 @@ class Settings(ttk.Frame):
 
         short_break_label = ttk.Label(
             settings_container,
-            text="Short break time: ",
+            text="Default projects location: ",
             style="LightText.TLabel"
         )
         short_break_label.grid(column=0, row=2, sticky="W")
