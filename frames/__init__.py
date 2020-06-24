@@ -1,2 +1,2 @@
-from frames.timer import Timer
+from frames.create_project import CreateProject
 from frames.settings import Settings

@@ -72,7 +72,7 @@ class Settings(ttk.Frame):
             child.grid_configure(padx=5, pady=5)
         
         button_container = ttk.Frame(self, style="Background.TFrame")
-        button_container.grid(sticky="EW", padx=10)
+        button_container.grid(sticky="EW", padx=10, pady=10)
         button_container.columnconfigure(0, weight=1)
 
         back_button = ttk.Button(

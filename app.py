@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from collections import deque
-from frames import Timer, Settings
+from frames import CreateProject, Settings
 from ctypes import windll
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -20,7 +20,7 @@ class PomodoroTimer(tk.Tk):
         style = ttk.Style()
         style.theme_use("clam")
 
-        style.configure("Timer.TFrame", background=COLOUR_LIGHT_BACKGROUND)
+        style.configure("CreateProject.TFrame", background=COLOUR_LIGHT_BACKGROUND)
         style.configure("Background.TFrame", background=COLOUR_PRIMARY)
         style.configure(
             "TimerText.TLabel",
@@ -49,7 +49,7 @@ class PomodoroTimer(tk.Tk):
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
 
-        self.title("Pomodoro Timer")
+        self.title("Pomodoro CreateProject")
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
 
@@ -65,15 +65,15 @@ class PomodoroTimer(tk.Tk):
 
         self.frames = {}
 
-        settings_frame = Settings(container, self, lambda: self.show_frame(Timer))
-        timer_frame = Timer(container, self, lambda: self.show_frame(Settings))
+        settings_frame = Settings(container, self, lambda: self.show_frame(CreateProject))
+        timer_frame = CreateProject(container, self, lambda: self.show_frame(Settings))
         settings_frame.grid(row=0, column=0, sticky="NESW")
         timer_frame.grid(row=0, column=0, sticky="NESW")
 
         self.frames[Settings] = settings_frame
-        self.frames[Timer] = timer_frame
+        self.frames[CreateProject] = timer_frame
         
-        self.show_frame(Timer)
+        self.show_frame(CreateProject)
 
     def show_frame(self, container):
         frame = self.frames[container]
