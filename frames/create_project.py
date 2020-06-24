@@ -83,10 +83,7 @@ class CreateProject(ttk.Frame):
             text="Create Project",
             style="Button.TButton",
             cursor="hand2",  # hand1 in some systems,
-            command=lambda: [
-                self.create_github_repo(), self.init_local_git(),
-                self.upload_files_to_github(), self.create_venv(), self.add1()
-            ]
+            command=lambda: self.create_github_repo(),
         )
         create_project.grid(row=4, columnspan=2, sticky="EW")
 
@@ -114,14 +111,14 @@ class CreateProject(ttk.Frame):
         try:
             repo = user.create_repo(self.controller.project_name.get())
             self.github_full_name = repo.full_name
+            # Create local folder
+            self.init_local_git()
+            self.upload_files_to_github()
+            self.create_venv()
         except GithubException as e:
             messagebox.showerror(
-                'Github error', f"""
-                The following error was thrown by the gitub api: {e}.
-                There are mainly two reasons, the project name is not available or 
-                you api token is not valid. For the second one chekout
-                https://docs.cachethq.io/docs/github-oauth-token#:~:text=Generate%20a%20new%20token,list%20of%20tokens%20from%20before.
-                """
+                'Github error', e.data["message"] + ".\nMake sure you are using a valid "+
+                "API token and the project name is still available."
             )
         self.add1()
 
