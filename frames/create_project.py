@@ -27,7 +27,7 @@ class CreateProject(ttk.Frame):
             textvariable=controller.folder_path,
             state='disabled',
             width=20,
-            font=("TkDefaultFont", 12)
+            font=("TkDefaultFont", 14)
         )
         self.folder_path_entry.grid(row=1, column=0)
 
