@@ -10,31 +10,24 @@ class CreateProject(ttk.Frame):
 
         self.controller = controller
         self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=0)
-
-        self.current_timer_label = tk.StringVar(value=self.controller.timer_schedule[0])
-        self.current_time = tk.StringVar(value=f"{controller.github_api_token.get()}")
     
         settings_button = ttk.Button(
             self,
             text="Settings",
             command=show_settings,
-            style="PomodoroButton.TButton",
+            style="Button.TButton",
             cursor="hand2"
         )
-
-        settings_button.grid(row=0, column=1, sticky="E", padx=10, pady=(10, 0))
-        
-        button_container = ttk.Frame(self, style="Background.TFrame")
-        button_container.grid(sticky="EW", padx=10, pady=10, columnspan=2)
-        button_container.columnconfigure(0, weight=1)
+        settings_button.grid(row=0, column=1, sticky="E")
         
         create_project = ttk.Button(
-            button_container,
+            self,
             text="Create Project",
-            style="PomodoroButton.TButton",
+            style="Button.TButton",
             cursor="hand2"  # hand1 in some systems
         )
+        create_project.grid(row=1, columnspan=2, sticky="EW")
 
-        create_project.grid(column=0, row=0, sticky="EW", padx=2)
-    
+
+        for child in self.winfo_children():
+            child.grid_configure(padx=15, pady=15)
