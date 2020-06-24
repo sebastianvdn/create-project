@@ -1,5 +1,5 @@
 # Automatic Project Creation
-> This is a simple tkinter wich initializes a git repository and pushes it to Github. Optionally it creates a virtual environment as well.
+> This is a simple tkinter app wich initializes a git repository and pushes it to Github. Optionally it creates a virtual environment as well.
 
 ## Prerequisites
 To run this program you should have **git** and **python** installed correctly on your systems.
