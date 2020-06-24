@@ -13,7 +13,7 @@ COLOUR_LIGHT_TEXT = "#eee"
 COLOUR_DARK_TEXT = "#8095a8"
 
 
-class PomodoroTimer(tk.Tk):
+class Project(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -81,5 +81,5 @@ class PomodoroTimer(tk.Tk):
         frame.tkraise()
 
 
-app = PomodoroTimer()
+app = Project()
 app.mainloop()
