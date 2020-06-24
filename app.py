@@ -51,6 +51,8 @@ class Project(tk.Tk):
             "Button.TButton",
             background=[("active", COLOUR_PRIMARY), ("disabled", COLOUR_LIGHT_TEXT)]
         )
+
+        style.configure("TProgressbar", background='green')
     
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
@@ -64,10 +66,10 @@ class Project(tk.Tk):
         data = self.get_settings()
         self.github_api_token = tk.StringVar(value=data["github_api_token"])
         self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
-        self.folder_path = tk.StringVar()
+        self.folder_path = tk.StringVar(value="C:/")
         self.create_venv = tk.BooleanVar()
         self.project_name = tk.StringVar()
-        self.progress_int_var = tk.IntVar(value=0)
+        self.progress_int_var = tk.IntVar()
 
         container = ttk.Frame(self)
         container.grid()
