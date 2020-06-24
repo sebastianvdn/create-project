@@ -22,14 +22,14 @@ class Settings(ttk.Frame):
         settings_container.columnconfigure(0, weight=1)
         settings_container.rowconfigure(1, weight=1)
 
-        pomodoro_label = ttk.Label(
+        github_api_token = ttk.Label(
             settings_container,
-            text="Pomodoro: ",
+            text="Gitub api token: ",
             style="LightText.TLabel"
         )
-        pomodoro_label.grid(column=0, row=0, sticky="W")
+        github_api_token.grid(column=0, row=0, sticky="W")
 
-        pomodoro_input = tk.Spinbox(
+        github_api_token_input = tk.Spinbox(
             settings_container,
             from_=0,
             to=120,
@@ -38,17 +38,17 @@ class Settings(ttk.Frame):
             textvariable=controller.pomodoro,
             width=10,
         )
-        pomodoro_input.grid(column=1, row=0, sticky="EW")
-        pomodoro_input.focus()
+        github_api_token_input.grid(column=1, row=0, sticky="EW")
+        github_api_token_input.focus()
 
-        long_break_label = ttk.Label(
+        default_venv_name = ttk.Label(
             settings_container,
-            text="Long break time: ",
+            text="Default venv name: ",
             style="LightText.TLabel"
         )
-        long_break_label.grid(column=0, row=1, sticky="W")
+        default_venv_name.grid(column=0, row=1, sticky="W")
 
-        long_break_input = tk.Spinbox(
+        default_ven_input = tk.Spinbox(
             settings_container,
             from_=0,
             to=60,
@@ -57,7 +57,7 @@ class Settings(ttk.Frame):
             textvariable=controller.long_break,
             width=10,
         )
-        long_break_input.grid(column=1, row=1, sticky="EW")
+        default_ven_input.grid(column=1, row=1, sticky="EW")
 
         short_break_label = ttk.Label(
             settings_container,

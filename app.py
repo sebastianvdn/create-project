@@ -53,7 +53,7 @@ class PomodoroTimer(tk.Tk):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
 
-        self.pomodoro = tk.StringVar(value=25)
+        self.pomodoro = tk.StringVar(value="xxx")
         self.long_break = tk.StringVar(value=15)
         self.short_break = tk.StringVar(value=5)
         self.timer_order = ["Pomodoro", "Short Break", "Pomodoro", "Short Break", "Pomodoro", "Long Break"]
