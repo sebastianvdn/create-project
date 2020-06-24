@@ -22,7 +22,8 @@ class Settings(ttk.Frame):
             self,
             justify="center",
             textvariable=controller.github_api_token,
-            width=10,
+            width=16,
+            font=("TkDefaultFont", 12)
         )
         github_api_token_input.grid(column=1, row=0, sticky="EW")
         github_api_token_input.focus()
@@ -38,7 +39,8 @@ class Settings(ttk.Frame):
             self,
             justify="center",
             textvariable=controller.default_venv_name,
-            width=10,
+            width=16,
+            font=("TkDefaultFont", 12)
         )
         default_ven_input.grid(column=1, row=1, sticky="EW")
 

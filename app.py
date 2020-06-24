@@ -47,13 +47,14 @@ class Project(tk.Tk):
         self.columnconfigure(0, weight=1)
 
         # Set the overall fontsize to 15 instead of 10.
-        font.nametofont("TkDefaultFont").configure(size=20)
+        font.nametofont("TkDefaultFont").configure(size=14)
 
         with open("settings.json") as f:
             data = json.load(f)
 
         self.github_api_token = tk.StringVar(value=data["github_api_token"])
         self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
+        self.folder_path = tk.StringVar()
 
         container = ttk.Frame(self)
         container.grid()
