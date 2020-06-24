@@ -45,7 +45,7 @@ class Settings(ttk.Frame):
         back_button = ttk.Button(
             self,
             text="← Back",
-            command=show_project,
+            command=lambda: [show_project()],
             style="Button.TButton",
             cursor="hand2"  # hand1 in some systems
         )
@@ -53,4 +53,4 @@ class Settings(ttk.Frame):
 
 
         for child in self.winfo_children():
-            child.grid_configure(padx=15, pady=15)
+            child.grid_configure(padx=12, pady=12)
