@@ -60,13 +60,13 @@ class Settings(ttk.Frame):
         )
         short_break_label.grid(column=0, row=2, sticky="W")
 
-        short_break_input = tk.Entry(
+        default_project_location_input = tk.Entry(
             settings_container,
             justify="center",
-            textvariable=controller.short_break,
+            textvariable=controller.default_project_location,
             width=10,
         )
-        short_break_input.grid(column=1, row=2, sticky="EW")
+        default_project_location_input.grid(column=1, row=2, sticky="EW")
 
         for child in settings_container.winfo_children():
             child.grid_configure(padx=5, pady=5)

@@ -134,7 +134,7 @@ class Timer(ttk.Frame):
                 pomodoro_time = int(self.controller.github_api_token.get())
                 self.current_time.set(f"{pomodoro_time:02d}:00")
             elif next_up == "Short Break":
-                short_break_time = int(self.controller.short_break.get())
+                short_break_time = int(self.controller.default_project_location.get())
                 self.current_time.set(f"{short_break_time:02d}:00")
             elif next_up == "Long Break":
                 default_venv_name_time = int(self.controller.default_venv_name.get())
