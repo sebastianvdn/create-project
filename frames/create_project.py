@@ -31,19 +31,19 @@ class CreateProject(ttk.Frame):
         )
         check_btn.grid(row=0, column=0)
 
-        default_venv_name = ttk.Label(
+        project_name_label = ttk.Label(
             self,
             text="Project name:",
             style="LightText.TLabel"
         )
-        default_venv_name.grid(column=0, row=1)
+        project_name_label.grid(column=0, row=1)
 
-        default_ven_input = tk.Entry(
+        project_name_entry = tk.Entry(
             self,
-            # textvariable=controller.,
+            textvariable=controller.project_name,
             font=("TkDefaultFont", 14)
         )
-        default_ven_input.grid(column=1, row=1, sticky="EW")
+        project_name_entry.grid(column=1, row=1, sticky="EW")
 
 
         self.folder_path_entry = ttk.Entry(
@@ -58,10 +58,8 @@ class CreateProject(ttk.Frame):
             folder = askdirectory() 
             controller.folder_path.set(folder)
             self.folder_path_entry['textvariable'] = controller.folder_path
-
-        self.full_path = os.path.join(controller.folder_path, controller.project_name.get())
         self.github_full_name = None
-
+        self.full_path = None
         btn = ttk.Button(
             self,
             text='Choose Folder',
@@ -74,8 +72,11 @@ class CreateProject(ttk.Frame):
             self,
             text="Create Project",
             style="Button.TButton",
-            cursor="hand2"  # hand1 in some systems,
-            command=lambda : [self.create_github_repo(), self.init_local_git(), self.upload_files_to_github(), self.create_venv()]
+            cursor="hand2",  # hand1 in some systems,
+            command=lambda: [
+                self.create_github_repo(), self.init_local_git(),
+                self.upload_files_to_github(), self.create_venv()
+            ]
         )
         create_project.grid(row=3, columnspan=2, sticky="EW")
 
@@ -87,6 +88,7 @@ class CreateProject(ttk.Frame):
         """
         initialize local git repo
         """
+        self.full_path = os.path.join(self.controller.folder_path.get(), self.controller.project_name.get())
         os.mkdir(self.full_path)
         os.chdir(self.full_path)
         os.system(f'echo # {self.controller.project_name.get()} >> README.md')
@@ -121,4 +123,4 @@ class CreateProject(ttk.Frame):
         """Create venv"""
         if self.controller.create_venv.get():
             os.chdir(self.full_path)
-            os.system(f"python -m venv {self.venv_name}")
+            os.system(f"python -m venv {self.controller.default_venv_name.get()}")
