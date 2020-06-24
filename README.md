@@ -2,65 +2,59 @@
 > This is a simple tkinter wich initializes a git repository and pushes it to Github. Optionally it creates a virtual environment as well.
 
 ## Prerequisites
-To run this program you should have git and python installed correctly on your systems.
+To run this program you should have **git** and **python** installed correctly on your systems.
+
+* [Python](https://www.python.org/downloads/)
+
+* [Git](https://git-scm.com/downloads)
 
 ![](header.jpg)
 
 ## Installation
 
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
+> Follow these steps to setup the application:
+Start by cloning the repository and cd'ing into it:
+```
+git clone && cd create-project
 ```
 
+
+Continue by creating a new virtual environment (optional, but just do it):
+```
+python -m venv venv
+```
+Now activate it
 Windows:
-
 ```sh
-edit autoexec.bat
+venv\Scripts\activate.bat
 ```
-
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
+Mac\Linux
 ```sh
-make install
-npm test
+source venv\Scripts\activate
 ```
+Install the requirements:
+```
+pip install -r requirements.txt
+```
+## Start using the application
 
-## Release History
+To use the application you should excute this command:
+```sh
+python app.py
+```
+Nice! You actualy got the app running but in order to start using it there are still a few steps to complete.
+First of all start by aquiring a api token.
+1. On you profile, go to the settings tab.
+2. Choose for developer settings.
+3. Select personal access tokens and generate a new token. Don't forget to copy it!
 
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
-* 0.0.1
-    * Work in progress
+Now, open up the app, go to the settings and paste the token in the token field.
 
-## Meta
-
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+Optionally, you can change the name that will be used for Virtual evironments.
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/sebastianvdn/create-project/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
