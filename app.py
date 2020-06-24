@@ -53,8 +53,8 @@ class PomodoroTimer(tk.Tk):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
 
-        self.pomodoro = tk.StringVar(value="xxx")
-        self.long_break = tk.StringVar(value=15)
+        self.github_api_token = tk.StringVar(value="xxx")
+        self.default_venv_name = tk.StringVar(value="venv")
         self.short_break = tk.StringVar(value=5)
         self.timer_order = ["Pomodoro", "Short Break", "Pomodoro", "Short Break", "Pomodoro", "Long Break"]
         self.timer_schedule = deque(self.timer_order)

@@ -16,7 +16,7 @@ class Timer(ttk.Frame):
         self.columnconfigure(1, weight=0)
 
         self.current_timer_label = tk.StringVar(value=self.controller.timer_schedule[0])
-        self.current_time = tk.StringVar(value=f"{controller.pomodoro.get()}:00")
+        self.current_time = tk.StringVar(value=f"{controller.github_api_token.get()}:00")
         self.timer_running = False
         self._timer_decrement_job = None
 
@@ -99,7 +99,7 @@ class Timer(ttk.Frame):
     
     def reset_timer(self):
         self.stop_timer()
-        pomodoro_time = self.controller.pomodoro.get()
+        pomodoro_time = self.controller.github_api_token.get()
         try:
             self.current_time.set(f"{int(pomodoro_time):02d}:00")
             self.controller.timer_schedule = deque(self.controller.timer_order)
@@ -131,13 +131,13 @@ class Timer(ttk.Frame):
 
 
             if next_up == "Pomodoro":
-                pomodoro_time = int(self.controller.pomodoro.get())
+                pomodoro_time = int(self.controller.github_api_token.get())
                 self.current_time.set(f"{pomodoro_time:02d}:00")
             elif next_up == "Short Break":
                 short_break_time = int(self.controller.short_break.get())
                 self.current_time.set(f"{short_break_time:02d}:00")
             elif next_up == "Long Break":
-                long_break_time = int(self.controller.long_break.get())
-                self.current_time.set(f"{long_break_time:02d}:00")
+                default_venv_name_time = int(self.controller.default_venv_name.get())
+                self.current_time.set(f"{default_venv_name_time:02d}:00")
             
             self._timer_decrement_job = self.after(1000, self.decrement_time)

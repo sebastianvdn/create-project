@@ -29,13 +29,10 @@ class Settings(ttk.Frame):
         )
         github_api_token.grid(column=0, row=0, sticky="W")
 
-        github_api_token_input = tk.Spinbox(
+        github_api_token_input = tk.Entry(
             settings_container,
-            from_=0,
-            to=120,
-            increment=1,
             justify="center",
-            textvariable=controller.pomodoro,
+            textvariable=controller.github_api_token,
             width=10,
         )
         github_api_token_input.grid(column=1, row=0, sticky="EW")
@@ -48,13 +45,10 @@ class Settings(ttk.Frame):
         )
         default_venv_name.grid(column=0, row=1, sticky="W")
 
-        default_ven_input = tk.Spinbox(
+        default_ven_input = tk.Entry(
             settings_container,
-            from_=0,
-            to=60,
-            increment=1,
             justify="center",
-            textvariable=controller.long_break,
+            textvariable=controller.default_venv_name,
             width=10,
         )
         default_ven_input.grid(column=1, row=1, sticky="EW")
@@ -66,11 +60,8 @@ class Settings(ttk.Frame):
         )
         short_break_label.grid(column=0, row=2, sticky="W")
 
-        short_break_input = tk.Spinbox(
+        short_break_input = tk.Entry(
             settings_container,
-            from_=0,
-            to=30,
-            increment=1,
             justify="center",
             textvariable=controller.short_break,
             width=10,
