@@ -53,21 +53,6 @@ class Settings(ttk.Frame):
         )
         default_ven_input.grid(column=1, row=1, sticky="EW")
 
-        short_break_label = ttk.Label(
-            settings_container,
-            text="Default projects location: ",
-            style="LightText.TLabel"
-        )
-        short_break_label.grid(column=0, row=2, sticky="W")
-
-        default_project_location_input = tk.Entry(
-            settings_container,
-            justify="center",
-            textvariable=controller.default_project_location,
-            width=10,
-        )
-        default_project_location_input.grid(column=1, row=2, sticky="EW")
-
         for child in settings_container.winfo_children():
             child.grid_configure(padx=5, pady=5)
         
