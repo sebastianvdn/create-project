@@ -1,11 +1,11 @@
 from github import Github, GithubException
-import os
+import os, subprocess
 from pathlib import Path
 
 class CreateProject:
     def __init__(
         self, repo_name, dir_path, github_full_name=None,
-        venv_name="venv", token="x"
+        venv_name="venv", token="8a8826a6119af94f7e1f9bd63906a6d2ecd9ccca"
         ):
         self.token = token
         self.repo_name = repo_name
@@ -17,10 +17,11 @@ class CreateProject:
     def init_local_git(self):
         os.mkdir(self.full_path)
         os.chdir(self.full_path)
-        os.system(f'echo # {self.repo_name} >> README.md')
-        os.system("git init")
-        os.system("git add .")
-        os.system('git commit -m "First commit"')
+        # os.system(f'echo # {self.repo_name} >> README.md')
+        subprocess.run(["echo", '#', self.repo_name, '>>', "README.md"],shell=True)
+        subprocess.run(['git', 'init'])
+        subprocess.run(['git', 'add', '.'])
+        subprocess.run(['git', 'commit', '-m', "First commit"])
 
     def create_github_repo(self):        
         g = Github(self.token)
@@ -33,12 +34,14 @@ class CreateProject:
 
     def upload_files_to_github(self):
         os.chdir(self.full_path)
-        os.system(f'git remote add origin https://github.com/{self.github_full_name}.git')
-        os.system('git push -u origin master')
+        subprocess.run(
+            ["git", "remote", "add", "origin", f'https://github.com/{self.github_full_name}.git']
+        )
+        subprocess.run(['git', 'push', '-u', 'origin', 'master'])
 
     def create_env(self):
         os.chdir(self.full_path)
-        os.system(f"python -m venv {self.venv_name}")
+        subprocess.run(['python', '-m', 'venv', self.venv_name])
 
 
 

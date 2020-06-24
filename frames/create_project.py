@@ -1,14 +1,11 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from tkinter.filedialog import askdirectory 
-import os
+import os, subprocess
 from github import Github, GithubException
 import time
-from multiprocessing import Pool
+import webbrowser
 
-
-# Create two pools
-pool = Pool(processes=2)
 
 
 class CreateProject(ttk.Frame):
@@ -105,10 +102,12 @@ class CreateProject(ttk.Frame):
         self.full_path = os.path.join(self.controller.folder_path.get(), self.controller.project_name.get())
         os.mkdir(self.full_path)
         os.chdir(self.full_path)
-        os.system(f'echo # {self.controller.project_name.get()} >> README.md')
-        os.system("git init")
-        os.system("git add .")
-        os.system('git commit -m "First commit"')
+        subprocess.run(["echo", '#', self.controller.project_name.get(), '>>', "README.md"],shell=True)
+        subprocess.run(['git', 'init'])
+        subprocess.run(['git', 'add', '.'])
+        subprocess.run(['git', 'commit', '-m', "First commit"])
+        self.add1()
+        self.update()
 
     def create_github_repo(self):
         """Create repo on github"""        
@@ -117,41 +116,46 @@ class CreateProject(ttk.Frame):
         try:
             repo = user.create_repo(self.controller.project_name.get())
             self.github_full_name = repo.full_name
+            # Update pb
+            self.add1()
+            self.update()
             # Create local folder
-            self.add1()
-            print(self.controller.progress_int_var.get())
             self.init_local_git()
-            self.add1()
-            print(self.controller.progress_int_var.get())
             self.upload_files_to_github()
-            self.add1()
-            print(self.controller.progress_int_var.get())
             self.create_venv()
+            
+            if messagebox.askokcancel('Project Created', 'Your project was created with success. Do you want to open in on github?'):
+                webbrowser.open_new(f'https://github.com/{self.github_full_name}')
+
+            # reset
             self.add1()
-            print(self.controller.progress_int_var.get())
+            self.update()
         except GithubException as e:
             messagebox.showerror(
                 'Github error', e.data["message"] + ".\nMake sure you are using a valid "+
                 "API token and the project name is still available."
             )
 
+
     def upload_files_to_github(self):
         """Upload files to github"""
         os.chdir(self.full_path)
-        os.system(f'git remote add origin https://github.com/{self.github_full_name}.git')
-        os.system('git push -u origin master')
+        subprocess.run(
+            ["git", "remote", "add", "origin", f'https://github.com/{self.github_full_name}.git']
+        )
+        subprocess.run(['git', 'push', '-u', 'origin', 'master'])
+        self.add1()
+        self.update()
 
     def create_venv(self):
         """Create venv"""
         if self.controller.create_venv.get():
             os.chdir(self.full_path)
-            os.system(f"python -m venv {self.controller.default_venv_name.get()}")
-
+            subprocess.run(['python', '-m', 'venv', self.controller.default_venv_name.get()])
+        self.add1()
+        self.update()
     def add1(self):
-        print(11111111111111111111111111111111111111)
         if self.controller.progress_int_var.get() == 4:
             self.controller.progress_int_var.set(0)
-            print(2222222222222222222222222222222222222222222222222222)
         else:
             self.controller.progress_int_var.set(self.controller.progress_int_var.get()+1)
-            print(333333333333333333333333333333333333333333333333)
