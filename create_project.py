@@ -1,11 +1,11 @@
-from github import Github
+from github import Github, GithubException
 import os
 from pathlib import Path
 
 class CreateProject:
     def __init__(
         self, repo_name, dir_path, github_full_name=None,
-        venv_name="venv", token="051920f87749d7021df0fd5543998d22b37a9680"
+        venv_name="venv", token="x"
         ):
         self.token = token
         self.repo_name = repo_name
@@ -25,8 +25,11 @@ class CreateProject:
     def create_github_repo(self):        
         g = Github(self.token)
         user = g.get_user()
-        repo = user.create_repo(self.repo_name)
-        self.github_full_name = repo.full_name
+        try:
+            repo = user.create_repo(self.repo_name)
+            self.github_full_name = repo.full_name
+        except GithubException as e:
+            print(e)
 
     def upload_files_to_github(self):
         os.chdir(self.full_path)
@@ -48,8 +51,8 @@ while create_env.lower() not in ('y', 'n'):
 
 
 project = CreateProject(repo_name, dir_path)
-project.init_local_git()
 project.create_github_repo()
+project.init_local_git()
 project.upload_files_to_github()
 if create_env == "y":
     project.create_env()
