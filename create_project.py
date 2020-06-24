@@ -2,11 +2,15 @@ from github import Github
 import os
 
 class CreateProject:
-    def __init__(self, repo_name, dir_path, github_full_name=None, token="051920f87749d7021df0fd5543998d22b37a9680"):
+    def __init__(
+        self, repo_name, dir_path, github_full_name=None,
+        venv_name="venv", token="051920f87749d7021df0fd5543998d22b37a9680"
+        ):
         self.token = token
         self.repo_name = repo_name
         self.dir_path = dir_path
         self.github_full_name = github_full_name
+        self.venv_name = venv_name
 
     def init_local_git(self):
         os.mkdir(os.path.join(self.dir_path, self.repo_name))
@@ -27,6 +31,11 @@ class CreateProject:
         os.system(f'git remote add origin https://github.com/{self.github_full_name}.git')
         os.system('git push -u origin master')
 
+    def create_env(self):
+        os.chdir(os.path.join(self.dir_path, self.repo_name))
+        os.system(f"python -m venv {self.venv_name}")
+
+
 
 repo_name = input("Give up the name that you want to use for you repo: ")
 dir_path = input("Give up the directory path you want the rope to be created in: ")
@@ -40,4 +49,7 @@ project = CreateProject(repo_name, dir_path)
 project.init_local_git()
 project.create_github_repo()
 project.upload_files_to_github()
+if create_env == "y":
+    project.create_env()
+    
 print("Done, your project is created.")
