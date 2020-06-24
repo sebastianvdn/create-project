@@ -3,6 +3,7 @@ from tkinter import ttk
 from collections import deque
 from frames import CreateProject, Settings
 from ctypes import windll
+import json
 windll.shcore.SetProcessDpiAwareness(1)
 
 
@@ -49,12 +50,13 @@ class Project(tk.Tk):
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
 
-        self.title("Pomodoro CreateProject")
+        self.title("Create a new Project")
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
-
-        self.github_api_token = tk.StringVar(value="xxx")
-        self.default_venv_name = tk.StringVar(value="venv")
+        with open("settings.json") as f:
+            data = json.load(f)
+        self.github_api_token = tk.StringVar(value=data["github_api_token"])
+        self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
         self.timer_order = [
             "Pomodoro", "Short Break", "Pomodoro", "Short Break", "Pomodoro", "Long Break"
             ]
