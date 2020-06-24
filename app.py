@@ -49,9 +49,8 @@ class Project(tk.Tk):
         # Set the overall fontsize to 15 instead of 10.
         font.nametofont("TkDefaultFont").configure(size=20)
 
-        with open("settings.json") as f:
-            data = json.load(f)
-
+        # try to open existing settings file and create one if it does not exist
+        data = self.get_settings()
         self.github_api_token = tk.StringVar(value=data["github_api_token"])
         self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
 
@@ -74,6 +73,18 @@ class Project(tk.Tk):
         frame = self.frames[container]
         frame.tkraise()
 
+    def get_settings(self):
+        """
+        get settings or create new one
+        """
+        try:
+            with open("frames\\settings.json") as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            with open('frames\\settings.json', 'w') as f:
+                data = {"github_api_token": "", "default_venv_name": "venv"}
+                json.dump(data, f)
+        return data
 
 app = Project()
 app.mainloop()
