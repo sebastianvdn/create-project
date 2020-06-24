@@ -66,6 +66,7 @@ class Project(tk.Tk):
         self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
         self.folder_path = tk.StringVar()
         self.create_venv = tk.BooleanVar()
+        self.project_name = tk.StringVar()
 
         container = ttk.Frame(self)
         container.grid()
