@@ -31,6 +31,17 @@ class Project(tk.Tk):
         )
 
         style.configure(
+            "LightText.TCheckbutton",
+            background=COLOUR_PRIMARY,
+            foreground=COLOUR_LIGHT_TEXT,
+        )
+
+        style.map(
+            "LightText.TCheckbutton",
+            background=[("active", COLOUR_PRIMARY), ("disabled", COLOUR_PRIMARY)]
+        )
+
+        style.configure(
             "Button.TButton",
             background=COLOUR_SECONDARY,
             foreground=COLOUR_LIGHT_TEXT,
@@ -54,6 +65,7 @@ class Project(tk.Tk):
         self.github_api_token = tk.StringVar(value=data["github_api_token"])
         self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
         self.folder_path = tk.StringVar()
+        self.create_venv = tk.BooleanVar()
 
         container = ttk.Frame(self)
         container.grid()

@@ -23,14 +23,36 @@ class CreateProject(ttk.Frame):
         )
         settings_button.grid(row=0, column=1, sticky="WE")
 
+        check_btn = ttk.Checkbutton(
+            self,
+            text="  Create Virtual Env",
+            style="LightText.TCheckbutton",
+            variable=controller.create_venv,
+        )
+        check_btn.grid(row=0, column=0)
+
+        default_venv_name = ttk.Label(
+            self,
+            text="Project name:",
+            style="LightText.TLabel"
+        )
+        default_venv_name.grid(column=0, row=1)
+
+        default_ven_input = tk.Entry(
+            self,
+            # textvariable=controller.,
+            font=("TkDefaultFont", 14)
+        )
+        default_ven_input.grid(column=1, row=1, sticky="EW")
+
+
         self.folder_path_entry = ttk.Entry(
             self,
             textvariable=controller.folder_path,
             state='disabled',
-            width=20,
             font=("TkDefaultFont", 14)
         )
-        self.folder_path_entry.grid(row=1, column=0)
+        self.folder_path_entry.grid(row=2, column=0)
 
         def open_folder(): 
             folder = askdirectory() 
@@ -46,7 +68,7 @@ class CreateProject(ttk.Frame):
             style="Button.TButton",
             command=lambda:open_folder()
         ) 
-        btn.grid(row=1, column=1)
+        btn.grid(row=2, column=1, sticky="EW")
 
         create_project = ttk.Button(
             self,
@@ -55,7 +77,7 @@ class CreateProject(ttk.Frame):
             cursor="hand2"  # hand1 in some systems,
             command=lambda : [self.create_github_repo(), self.init_local_git(), self.upload_files_to_github(), self.create_venv()]
         )
-        create_project.grid(row=2, columnspan=2, sticky="EW")
+        create_project.grid(row=3, columnspan=2, sticky="EW")
 
 
         for child in self.winfo_children():
