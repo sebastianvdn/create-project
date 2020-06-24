@@ -1,1 +1,0 @@
-progress_int_var
