@@ -25,14 +25,14 @@ class Settings(ttk.Frame):
             justify="center",
             textvariable=controller.github_api_token,
             width=16,
-            font=("TkDefaultFont", 12)
+            font=("TkDefaultFont", 14)
         )
         github_api_token_input.grid(column=1, row=0, sticky="EW")
         github_api_token_input.focus()
 
         default_venv_name = ttk.Label(
             self,
-            text="Default venv name: ",
+            text="Virtual Env name: ",
             style="LightText.TLabel"
         )
         default_venv_name.grid(column=0, row=1, sticky="W")
@@ -42,7 +42,7 @@ class Settings(ttk.Frame):
             justify="center",
             textvariable=controller.default_venv_name,
             width=16,
-            font=("TkDefaultFont", 12)
+            font=("TkDefaultFont", 14)
         )
         default_ven_input.grid(column=1, row=1, sticky="EW")
 
