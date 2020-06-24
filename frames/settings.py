@@ -3,34 +3,23 @@ from tkinter import ttk
 
 
 class Settings(ttk.Frame):
-    def __init__(self, parent, controller, show_timer):
+    def __init__(self, parent, controller, show_project):
         super().__init__(parent)
 
         self["style"] = "Background.TFrame"
 
+        self.controller = controller
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(2, weight=1)
-
-        settings_container = ttk.Frame(
-            self,
-            padding="30 15 30 15",
-            style="Background.TFrame"
-        )
-
-        settings_container.grid(row=0, column=0, sticky="EW", padx=10, pady=10)
-
-        settings_container.columnconfigure(0, weight=1)
-        settings_container.rowconfigure(1, weight=1)
 
         github_api_token = ttk.Label(
-            settings_container,
+            self,
             text="Gitub api token: ",
             style="LightText.TLabel"
         )
         github_api_token.grid(column=0, row=0, sticky="W")
 
         github_api_token_input = tk.Entry(
-            settings_container,
+            self,
             justify="center",
             textvariable=controller.github_api_token,
             width=10,
@@ -39,33 +28,29 @@ class Settings(ttk.Frame):
         github_api_token_input.focus()
 
         default_venv_name = ttk.Label(
-            settings_container,
+            self,
             text="Default venv name: ",
             style="LightText.TLabel"
         )
         default_venv_name.grid(column=0, row=1, sticky="W")
 
         default_ven_input = tk.Entry(
-            settings_container,
+            self,
             justify="center",
             textvariable=controller.default_venv_name,
             width=10,
         )
         default_ven_input.grid(column=1, row=1, sticky="EW")
 
-        for child in settings_container.winfo_children():
-            child.grid_configure(padx=5, pady=5)
-        
-        button_container = ttk.Frame(self, style="Background.TFrame")
-        button_container.grid(sticky="EW", padx=10, pady=10)
-        button_container.columnconfigure(0, weight=1)
-
         back_button = ttk.Button(
-            button_container,
+            self,
             text="← Back",
-            command=show_timer,
-            style="PomodoroButton.TButton",
+            command=show_project,
+            style="Button.TButton",
             cursor="hand2"  # hand1 in some systems
         )
+        back_button.grid(columnspan=2, row=2, sticky="EW", padx=2)
 
-        back_button.grid(column=0, row=0, sticky="EW", padx=2)
+
+        for child in self.winfo_children():
+            child.grid_configure(padx=15, pady=15)
