@@ -74,7 +74,7 @@ class CreateProject(ttk.Frame):
             self,
             text="Create Project",
             style="Button.TButton",
-            cursor="hand2"  # hand1 in some systems,
+            cursor="hand2",  # hand1 in some systems,
             command=lambda : [self.create_github_repo(), self.init_local_git(), self.upload_files_to_github(), self.create_venv()]
         )
         create_project.grid(row=3, columnspan=2, sticky="EW")
