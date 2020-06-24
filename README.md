@@ -4,7 +4,7 @@
 ## Prerequisites
 To run this program you should have git and python installed correctly on your systems.
 
-![](header.png)
+![](header.jpg)
 
 ## Installation
 
