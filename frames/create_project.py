@@ -85,7 +85,7 @@ class CreateProject(ttk.Frame):
             cursor="hand2",  # hand1 in some systems,
             command=lambda: [
                 self.create_github_repo(), self.init_local_git(),
-                self.upload_files_to_github(), self.create_venv()
+                self.upload_files_to_github(), self.create_venv(), self.add1()
             ]
         )
         create_project.grid(row=4, columnspan=2, sticky="EW")
@@ -105,6 +105,7 @@ class CreateProject(ttk.Frame):
         os.system("git init")
         os.system("git add .")
         os.system('git commit -m "First commit"')
+        self.add1()
 
     def create_github_repo(self):
         """Create repo on github"""        
@@ -122,15 +123,24 @@ class CreateProject(ttk.Frame):
                 https://docs.cachethq.io/docs/github-oauth-token#:~:text=Generate%20a%20new%20token,list%20of%20tokens%20from%20before.
                 """
             )
+        self.add1()
 
     def upload_files_to_github(self):
         """Upload files to github"""
         os.chdir(self.full_path)
         os.system(f'git remote add origin https://github.com/{self.github_full_name}.git')
         os.system('git push -u origin master')
+        self.add1()
 
     def create_venv(self):
         """Create venv"""
         if self.controller.create_venv.get():
             os.chdir(self.full_path)
             os.system(f"python -m venv {self.controller.default_venv_name.get()}")
+        self.add1()
+
+    def add1(self):
+        if self.controller.progress_int_var.get() == 4:
+            self.controller.progress_int_var.set(0)
+        else:
+            self.controller.progress_int_var.set(self.controller.progress_int_var.get()+1)
