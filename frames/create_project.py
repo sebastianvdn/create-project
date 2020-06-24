@@ -10,6 +10,7 @@ class CreateProject(ttk.Frame):
     def __init__(self, parent, controller, show_settings):
         super().__init__(parent)
 
+
         self["style"] = "Background.TFrame"
         self.controller = controller
         self.columnconfigure(0, weight=1)
@@ -68,6 +69,15 @@ class CreateProject(ttk.Frame):
         ) 
         btn.grid(row=2, column=1, sticky="EW")
 
+        progbar = ttk.Progressbar(
+            self,
+            orient=tk.HORIZONTAL, 
+            mode='determinate',
+            maximum=4,
+            variable=controller.progress_int_var
+        )
+        progbar.grid(row=3, columnspan=2, sticky="EW")
+
         create_project = ttk.Button(
             self,
             text="Create Project",
@@ -78,7 +88,7 @@ class CreateProject(ttk.Frame):
                 self.upload_files_to_github(), self.create_venv()
             ]
         )
-        create_project.grid(row=3, columnspan=2, sticky="EW")
+        create_project.grid(row=4, columnspan=2, sticky="EW")
 
 
         for child in self.winfo_children():
