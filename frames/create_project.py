@@ -102,6 +102,7 @@ class CreateProject(ttk.Frame):
         os.system("git init")
         os.system("git add .")
         os.system('git commit -m "First commit"')
+        self.add1()
 
     def create_github_repo(self):
         """Create repo on github"""        
@@ -119,15 +120,24 @@ class CreateProject(ttk.Frame):
                 'Github error', e.data["message"] + ".\nMake sure you are using a valid "+
                 "API token and the project name is still available."
             )
+        self.add1()
 
     def upload_files_to_github(self):
         """Upload files to github"""
         os.chdir(self.full_path)
         os.system(f'git remote add origin https://github.com/{self.github_full_name}.git')
         os.system('git push -u origin master')
+        self.add1()
 
     def create_venv(self):
         """Create venv"""
         if self.controller.create_venv.get():
             os.chdir(self.full_path)
             os.system(f"python -m venv {self.controller.default_venv_name.get()}")
+        self.add1()
+
+    def add1(self):
+        if self.controller.progress_int_var.get() == 4:
+            self.controller.progress_int_var.set(0)
+        else:
+            self.controller.progress_int_var.set(self.controller.progress_int_var.get()+1)
