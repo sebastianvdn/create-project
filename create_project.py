@@ -5,7 +5,7 @@ from pathlib import Path
 class CreateProject:
     def __init__(
         self, repo_name, dir_path, github_full_name=None,
-        venv_name="venv", token="8a8826a6119af94f7e1f9bd63906a6d2ecd9ccca"
+        venv_name="venv", token="79a9393ba2bf14347a38d45a67833c3ba16d781b"
         ):
         self.token = token
         self.repo_name = repo_name

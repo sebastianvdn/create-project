@@ -124,7 +124,7 @@ class CreateProject(ttk.Frame):
             self.upload_files_to_github()
             self.create_venv()
             
-            if messagebox.askokcancel('Project Created', 'Your project was created with success. Do you want to open in on github?'):
+            if messagebox.askyesno('Project Created', 'Your project was created with success. Do you want to open in on github?'):
                 webbrowser.open_new(f'https://github.com/{self.github_full_name}')
 
             # reset
