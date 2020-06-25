@@ -5,9 +5,10 @@ from pathlib import Path
 class CreateProject:
     def __init__(
         self, repo_name, dir_path, github_full_name=None,
-        venv_name="venv", token="79a9393ba2bf14347a38d45a67833c3ba16d781b"
+        venv_name="venv", username="sebastian.van.den.noortgaete@gmail.com", password="ELmudo007"
         ):
-        self.token = token
+        self.username = username
+        self.password = password
         self.repo_name = repo_name
         self.dir_path = Path(dir_path)
         self.full_path = os.path.join(dir_path, repo_name)
@@ -24,7 +25,7 @@ class CreateProject:
         subprocess.run(['git', 'commit', '-m', "First commit"])
 
     def create_github_repo(self):        
-        g = Github(self.token)
+        g = Github(self.username, self.password)
         user = g.get_user()
         try:
             repo = user.create_repo(self.repo_name)

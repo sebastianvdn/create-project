@@ -13,22 +13,25 @@ class Settings(ttk.Frame):
         self.columnconfigure(0, weight=1)
         self.dir_path = os.path.dirname(os.path.abspath(__file__))
 
-        github_api_token = ttk.Label(
-            self,
-            text="Gitub api token: ",
-            style="LightText.TLabel"
-        )
-        github_api_token.grid(column=0, row=0, sticky="W")
-
-        github_api_token_input = tk.Entry(
+        username_input = tk.Entry(
             self,
             justify="center",
-            textvariable=controller.github_api_token,
+            textvariable=controller.username,
             width=16,
             font=("TkDefaultFont", 14)
         )
-        github_api_token_input.grid(column=1, row=0, sticky="EW")
-        github_api_token_input.focus()
+        username_input.grid(column=0, row=0, sticky="EW")
+        username_input.focus()
+
+        password = tk.Entry(
+            self,
+            show="*",
+            justify="center",
+            textvariable=controller.password,
+            width=16,
+            font=("TkDefaultFont", 14)
+        )
+        password.grid(column=1, row=0, sticky="EW")
 
         default_venv_name = ttk.Label(
             self,
@@ -63,9 +66,11 @@ class Settings(ttk.Frame):
         """Update settings with given input fields"""
         os.chdir(self.dir_path)
         venv_name = self.controller.default_venv_name.get()
-        github_token = self.controller.github_api_token.get()
-        print(venv_name, github_token)
+        username = self.controller.username.get()
+        password = self.controller.password.get()
+
+        print(venv_name, username, password)
         with open("settings.json", "w") as f:
-            data = {"github_api_token": github_token, "default_venv_name": venv_name}
+            data = {"username": username, "password": password, "default_venv_name": venv_name}
             json.dump(data, f)
 
