@@ -69,7 +69,6 @@ class Settings(ttk.Frame):
         username = self.controller.username.get()
         password = self.controller.password.get()
 
-        print(venv_name, username, password)
         with open("settings.json", "w") as f:
             data = {"username": username, "password": password, "default_venv_name": venv_name}
             json.dump(data, f)
