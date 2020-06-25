@@ -100,7 +100,7 @@ class Project(tk.Tk):
                 data = json.load(f)
         except FileNotFoundError:
             with open('frames\\settings.json', 'w') as f:
-                data = {"username": "username or email", "password": "password", "default_venv_name": "venv"}
+                data = {"username": "", "password": "", "default_venv_name": "venv"}
                 json.dump(data, f)
         return data
 
