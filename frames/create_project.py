@@ -111,10 +111,10 @@ class CreateProject(ttk.Frame):
 
     def create_github_repo(self):
         """Create repo on github"""        
-        g = Github(self.controller.github_api_token.get())
+        g = Github(self.controller.username.get(), self.controller.password.get())
         user = g.get_user()
         try:
-            repo = user.create_repo(self.controller.project_name.get())
+            repo = user.create_repo(self.controller.project_name.get(), private=True)
             self.github_full_name = repo.full_name
             # Update pb
             self.add1()
@@ -124,7 +124,7 @@ class CreateProject(ttk.Frame):
             self.upload_files_to_github()
             self.create_venv()
             
-            if messagebox.askyesno('Project Created', 'Your project was created with success. Do you want to open in on github?'):
+            if messagebox.askyesno('Project Created', 'Your project was created with success. Do you want to open it on github?'):
                 webbrowser.open_new(f'https://github.com/{self.github_full_name}')
 
             # reset
@@ -133,7 +133,7 @@ class CreateProject(ttk.Frame):
         except GithubException as e:
             messagebox.showerror(
                 'Github error', e.data["message"] + ".\nMake sure you are using a valid "+
-                "API token and the project name is still available."
+                "username, password and the project name is still available."
             )
 
 

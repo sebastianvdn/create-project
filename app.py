@@ -64,7 +64,8 @@ class Project(tk.Tk):
 
         # try to open existing settings file and create one if it does not exist
         data = self.get_settings()
-        self.github_api_token = tk.StringVar(value=data["github_api_token"])
+        self.username = tk.StringVar(value=data["username"])
+        self.password = tk.StringVar(value=data["password"])
         self.default_venv_name = tk.StringVar(value=data["default_venv_name"])
         self.folder_path = tk.StringVar(value="C:/")
         self.create_venv = tk.BooleanVar()
@@ -99,7 +100,7 @@ class Project(tk.Tk):
                 data = json.load(f)
         except FileNotFoundError:
             with open('frames\\settings.json', 'w') as f:
-                data = {"github_api_token": "", "default_venv_name": "venv"}
+                data = {"username": "username or email", "password": "password", "default_venv_name": "venv"}
                 json.dump(data, f)
         return data
 
