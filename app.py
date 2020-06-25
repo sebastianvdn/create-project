@@ -4,7 +4,7 @@ import tkinter.font as font
 from frames import CreateProject, Settings
 import json
 try:
-    # Windows only imo
+    # Windows only impor
     from ctypes import windll
     windll.shcore.SetProcessDpiAwareness(1)
 except:
