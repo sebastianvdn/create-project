@@ -6,6 +6,8 @@ import json
 try:
     from ctypes import windll
     windll.shcore.SetProcessDpiAwareness(1)
+except:
+    
 
 
 COLOUR_PRIMARY = "#2e3f4f"
