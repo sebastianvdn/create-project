@@ -41,12 +41,12 @@ class CreateProject(ttk.Frame):
         )
         project_name_label.grid(column=0, row=1)
 
-        project_name_entry = tk.Entry(
+        self.project_name_entry = tk.Entry(
             self,
             textvariable=controller.project_name,
             font=("TkDefaultFont", 14)
         )
-        project_name_entry.grid(column=1, row=1, sticky="EW")
+        self.project_name_entry.grid(column=1, row=1, sticky="EW")
 
 
         self.folder_path_entry = ttk.Entry(
@@ -141,7 +141,6 @@ class CreateProject(ttk.Frame):
                 "username, password and the project name is still available."
             )
 
-
     def upload_files_to_github(self):
         """Upload files to github"""
         os.chdir(self.full_path)
@@ -159,8 +158,10 @@ class CreateProject(ttk.Frame):
             subprocess.run(['python', '-m', 'venv', self.controller.default_venv_name.get()])
         self.add1()
         self.update()
+
     def add1(self):
         if self.controller.progress_int_var.get() == 4:
             self.controller.progress_int_var.set(0)
+            self.project_name_entry.delete(0, 'end')
         else:
             self.controller.progress_int_var.set(self.controller.progress_int_var.get()+1)
