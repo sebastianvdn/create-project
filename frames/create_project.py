@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 from tkinter.filedialog import askdirectory 
 import os, subprocess
 from github import Github, GithubException
-i
+
 import webbrowser
 
 
