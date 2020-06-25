@@ -5,7 +5,7 @@ from frames import CreateProject, Settings
 import json
 try:
     from ctypes import windll
-windll.shcore.SetProcessDpiAwareness(1)
+    windll.shcore.SetProcessDpiAwareness(1)
 
 
 COLOUR_PRIMARY = "#2e3f4f"
