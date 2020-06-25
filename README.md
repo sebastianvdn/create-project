@@ -23,7 +23,7 @@ Continue by creating a new virtual environment (optional, but just do it):
 ```
 python -m venv venv
 ```
-Now activate it
+Now activate it.<br>
 Windows:
 ```sh
 venv\Scripts\activate.bat
@@ -42,16 +42,12 @@ To use the application you should excute this command:
 ```sh
 python app.py
 ```
-Nice! You actualy got the app running but in order to start using it there are still a few steps to complete.
-First of all start by aquiring a api token.
-1. On you profile, go to the settings tab.
-2. Choose for developer settings.
-3. Select personal access tokens and generate a new token. Don't forget to copy it!
+Nice! You actualy got the app running but in order to start using it there are still a few steps to complete.<br>
+In the app, open up the settings frame and fill in your username/email and password.
 
-Now, open up the app, go to the settings and paste the token in the token field.
+Optionally, you can change the name that will be used for Virtual environments.
 
-Optionally, you can change the name that will be used for Virtual evironments.
-
+Your all set and ready to go!
 ## Contributing
 
 1. Fork it (<https://github.com/sebastianvdn/create-project/fork>)
