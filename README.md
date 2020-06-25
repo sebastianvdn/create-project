@@ -15,7 +15,7 @@ To run this program you should have **git** and **python** installed correctly o
 > Follow these steps to setup the application:
 Start by cloning the repository and cd'ing into it:
 ```
-git clone && cd create-project
+git clone https://github.com/sebastianvdn/create-project.git && cd create-project
 ```
 
 
