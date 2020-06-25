@@ -7,7 +7,7 @@ try:
     from ctypes import windll
     windll.shcore.SetProcessDpiAwareness(1)
 except:
-    pa
+    pas
 
 
 COLOUR_PRIMARY = "#2e3f4f"
