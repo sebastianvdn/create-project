@@ -55,12 +55,17 @@ class CreateProject(ttk.Frame):
             state='disabled',
             font=("TkDefaultFont", 14)
         )
-        self.folder_path_entry.grid(row=2, column=0)
+        self.folder_path_entry.grid(row=2, column=1)
 
         def open_folder(): 
             folder = askdirectory() 
             controller.folder_path.set(folder)
             self.folder_path_entry['textvariable'] = controller.folder_path
+
+            if not folder:
+                messagebox.showerror("No folder choses", "Please choose a folder")
+                controller.folder_path.set('C:/')
+
         self.github_full_name = None
         self.full_path = None
         btn = ttk.Button(
@@ -69,7 +74,7 @@ class CreateProject(ttk.Frame):
             style="Button.TButton",
             command=lambda:open_folder()
         ) 
-        btn.grid(row=2, column=1, sticky="EW")
+        btn.grid(row=2, column=0, sticky="EW")
 
         progbar = ttk.Progressbar(
             self,
