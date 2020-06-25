@@ -105,4 +105,5 @@ class Project(tk.Tk):
         return data
 
 app = Project()
+app.iconbitmap('github-logo.ico')
 app.mainloop()
