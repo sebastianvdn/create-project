@@ -3,6 +3,7 @@ from tkinter import ttk
 import tkinter.font as font
 from frames import CreateProject, Settings
 import json
+
 from ctypes import windll
 windll.shcore.SetProcessDpiAwareness(1)
 
