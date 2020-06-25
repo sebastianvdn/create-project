@@ -6,7 +6,6 @@ from github import Github, GithubException
 import webbrowser
 
 
-
 class CreateProject(ttk.Frame):
     def __init__(self, parent, controller, show_settings):
         super().__init__(parent)
