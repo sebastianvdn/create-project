@@ -8,7 +8,7 @@ To run this program you should have **git** and **python** installed correctly o
 
 * [Git](https://git-scm.com/downloads)
 
-![](header.jpg)
+![pic](header.jpg)
 
 ## Installation
 
